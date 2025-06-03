@@ -39,8 +39,6 @@ export const register = async (req, res) => {
       verificationCode: verificationCode,
       verificationCodeExpiresAt: Date.now() + 60 * 60 * 1000,
     });
-
-   console.log(`Verify user at: /api/auth/verify-email/${user.verificationCode}`);
     // Send verification email
     await sendVerificationEmail(user.email, verificationCode);
 
@@ -60,22 +58,62 @@ export const register = async (req, res) => {
   }
 };
 
-// export const login = async (req, res) => {
-//   const { email, password } = req.body;
+export const verifyEmail = async (req, res) => {
+  const {token} = req.params;
+try {
+  const user = await userModel.findOne({verificationCode: token});
 
-//   try {
-//     const user = await userModel.findOne({ email }).select("+password");
-//     if (!user || !token || !(await user.matchPassword(password))) {
-//       return res.status(401).json({ message: "Invalid Credentials" });
-//     }
+  if (!user) {
+    return res.status(400).json({message: "Invalid or Expired verification code"})
+  }
 
-//     res.json({
-//       id: user._id,
-//       FullName: user.fullName,
-//       email: user.email,
-//       token: generateToken(user._id),
-//     });
-//   } catch (err) {
-//     res.status(501).json({ message: "Login Failed", error: err.message });
-//   }
-// };
+  if(user.verificationCodeExpiresAt < Date.now()){
+    return res.status(400).json({message: "Verification Code has Expired"})
+  }
+
+  user.isVerified = true;
+  user.verificationCode = undefined;
+  user.verificationCodeExpiresAt = undefined;
+
+  await user.save();
+
+  return res.status(200).json({message: "Email verified Successfully"})
+} catch (error) {
+  return res.status(500).json({message: "Server Error", error: error.message})
+}
+}
+
+export const login = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await userModel.findOne({ email }).select("+password");
+    if (!user || !(await user.matchPassword(password))) {
+      return res.status(401).json({ message: "Invalid Credentials" });
+    }
+    if(!user.isVerified){
+      return res.status(401).json({message: "Please Verify your Email First"})
+    }
+
+    res.json({
+      id: user._id,
+      FullName: user.fullName,
+      email: user.email,
+      role: user.role,
+      token: generateToken(user._id),
+    });
+  } catch (err) {
+    res.status(501).json({ message: "Login Failed", error: err.message });
+  }
+};
+
+export const logout = async (req, res) => {
+  res.clearCookie("token", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "strict",
+  });
+
+  return res.status(200).json({ message: "Logged out successfully" });
+};
+

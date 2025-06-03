@@ -10,7 +10,7 @@ export const sendVerificationEmail = async (email, token) => {
     to: email,
     subject: 'Verify Your Email',
     html: `
-      <div style="display: flex; justify-content: center; align-items: center; padding: 20px; background-color: #f4f4f4;">
+      <div style="justify-content: center; align-items: center; padding: 20px; background-color: #f4f4f4;">
       <div style="font-family: sans-serif; background-color: rgb(148, 164, 180); padding: 20px; border-radius: 20px; width: 400px;">
         <img
           src="https://resend.dev/logo.png"
