@@ -11,6 +11,7 @@ import rateLimit from 'express-rate-limit';
 import DBConnect from './config/db.js'
 import authRoutes from './routes/auth.routes.js';
 import productRoutes from './routes/product.route.js'
+import cartRoutes from './routes/cart.routes.js'
 
 
 const Port = process.env.PORT;
@@ -29,7 +30,8 @@ const limiter = rateLimit({
 app.use(limiter); // rateLimiter
 
 app.use('/api/auth', authRoutes);
-app.use('/api/products', productRoutes)
+app.use('/api/products', productRoutes);
+app.use('/api/cart', cartRoutes);
 
 app.get('/', (req, res) => {
     res.send("API is running....");

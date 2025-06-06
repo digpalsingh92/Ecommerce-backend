@@ -6,8 +6,8 @@ export const sendVerificationEmail = async (email, token) => {
   const verifyUrl = `${process.env.BASE_URL}/api/auth/verify-email/${token}`;
 
   const { data, error } = await resend.emails.send({
-    from: 'YourApp <onboarding@resend.dev>', // You can set this in Resend dashboard
-    to: email,
+    from: 'YourApp <onboarding@resend.dev>',
+    to: "digpalsingh18901@gmail.com",
     subject: 'Verify Your Email',
     html: `
       <div style="justify-content: center; align-items: center; padding: 20px; background-color: #f4f4f4;">

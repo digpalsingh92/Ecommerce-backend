@@ -73,3 +73,52 @@ export const getProductById = async (req, res) => {
   }
 };
 
+export const updateProductById = async (req, res) => {
+  try {
+    const productId = req.params.id;
+    const updateData = req.body;
+
+    const updatedProduct = await productModel.findByIdAndUpdate(
+      productId,
+      updateData,
+      { new: true, runValidators: true }
+    );
+
+    if (!updatedProduct) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    res.json({
+      success: true,
+      message: "Product updated successfully",
+      product: updatedProduct,
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to update product", error: error.message });
+  }
+};
+
+export const deleteProductById = async (req, res) => {
+  try {
+    const productId = req.params.id;
+
+    const product = await productModel.findById(productId);
+
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    await product.deleteOne();
+
+    res.json({
+      success: true,
+      message: "Product deleted successfully",
+      deletedProduct: product,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Failed to delete product",
+      error: error.message,
+    });
+  }
+};
