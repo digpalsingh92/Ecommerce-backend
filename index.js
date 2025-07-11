@@ -12,6 +12,7 @@ import DBConnect from './config/db.js'
 import authRoutes from './routes/auth.routes.js';
 import productRoutes from './routes/product.route.js'
 import cartRoutes from './routes/cart.routes.js'
+import orderRoutes from './routes/order.routes.js';
 
 
 const Port = process.env.PORT;
@@ -30,6 +31,7 @@ app.use(limiter);
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/cart', cartRoutes);
+app.use('/api/order', orderRoutes);
 
 app.get('/', (req, res) => {
     res.send("API is running....");
