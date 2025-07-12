@@ -1,3 +1,5 @@
+import path from "path";
+import fs from "fs";
 import cartModel from "../models/cart.model.js";
 import orderModel from "../models/order.model.js";
 import { sendOrderConfirmationEmail } from "../resendMail/orderEmail.js";
@@ -48,8 +50,9 @@ export async function orderCheckout(req, res) {
 }
 
 export const downloadInvoice = async (req, res) => {
-  const orderId = req.params.id;
+  const orderId = req.params.orderId;
   const userId = req.user._id;
+
 
   try {
     const order = await orderModel
