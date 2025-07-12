@@ -2,7 +2,7 @@ import path from "path";
 import fs from "fs";
 import cartModel from "../models/cart.model.js";
 import orderModel from "../models/order.model.js";
-import { sendOrderConfirmationEmail } from "../resendMail/orderEmail.js";
+import { sendOrderConfirmationEmail } from "../nodemailer/orderEmail.js";
 import { generateInvoicePDF } from "../utils/invoiceGenerator.js";
 
 export async function orderCheckout(req, res) {

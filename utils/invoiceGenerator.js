@@ -35,11 +35,11 @@ export const generateInvoicePDF = (order, filePath) => {
   // Company Details - Left
   doc.fontSize(12)
      .fillColor(textColor)
-     .text('Your Company Name', 50, companyTop)
-     .text('Your Address Line 1', 50, companyTop + 15)
-     .text('Your Address Line 2', 50, companyTop + 30)
-     .text('Phone: +91 XXXXXXXXXX', 50, companyTop + 45)
-     .text('Email: info@yourcompany.com', 50, companyTop + 60);
+     .text('wellplayed Pvt Ltd', 50, companyTop)
+     .text('khopcha, street 420, Noida', 50, companyTop + 15)
+     .text('Uttar Pradesh, 201301, India', 50, companyTop + 30)
+     .text('Phone: +91 9192939495', 50, companyTop + 45)
+     .text('Email: info@wellplayed.com', 50, companyTop + 60);
 
   // Invoice Info - Right
   doc.fillColor(accentColor)
@@ -164,11 +164,6 @@ export const generateInvoicePDF = (order, filePath) => {
      .fontSize(10)
      .text('Thank you for your business!', 50, footerY, { align: 'center', width: 500 })
      .text('This is a computer-generated invoice.', 50, footerY + 15, { align: 'center', width: 500 });
-
-  doc.fontSize(9)
-     .fillColor('#9ca3af')
-     .text('Payment Terms: Due within 30 days', 50, footerY + 40)
-     .text('For any queries, contact us at support@yourcompany.com', 50, footerY + 55);
 
   doc.end();
 };

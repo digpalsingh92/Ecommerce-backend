@@ -4,7 +4,7 @@ import { validateEmail } from "../validators/emailValidator.js";
 import { generateVerificationCode } from "../utils/verificationToken.js";
 import validator from "validator";
 import { validateUserRole } from "../validators/userRoleValidator.js";
-import { sendVerificationEmail } from "../resendMail/emailService.js";
+import { sendVerificationEmail } from "../nodemailer/verificationEmail.js";
 
 export const register = async (req, res) => {
   const { fullName, email, password, role } = req.body;
@@ -40,7 +40,7 @@ export const register = async (req, res) => {
       verificationCodeExpiresAt: Date.now() + 60 * 60 * 1000,
     });
     // Send verification email
-    await sendVerificationEmail(user.email, verificationCode);
+    await sendVerificationEmail(user.email, user.verificationCode);
 
     res.status(201).json({
       sucess: true,

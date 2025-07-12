@@ -5,7 +5,7 @@ db.getCollection("products").insertMany([
   {
     title: "Smartphone Stand",
     description: "Adjustable aluminum phone stand for desk",
-    price: 15.99,
+    price: 299.0,
     category: "electronics",
     stock: 50,
     images: ["https://example.com/phone-stand.jpg"],
@@ -13,7 +13,7 @@ db.getCollection("products").insertMany([
   {
     title: "Denim Jacket",
     description: "Stylish blue denim jacket for men",
-    price: 49.99,
+    price: 999.00,
     category: "clothing",
     stock: 30,
     images: ["https://example.com/denim-jacket.jpg"],
@@ -21,7 +21,7 @@ db.getCollection("products").insertMany([
   {
     title: "Wooden Coffee Table",
     description: "Solid wood modern coffee table for living room",
-    price: 120.0,
+    price: 1500.0,
     category: "furniture",
     stock: 10,
     images: ["https://example.com/coffee-table.jpg"],
@@ -29,7 +29,7 @@ db.getCollection("products").insertMany([
   {
     title: "Wireless Mouse",
     description: "Ergonomic Bluetooth mouse with silent clicks",
-    price: 25.5,
+    price: 549.00,
     category: "electronics",
     stock: 40,
     images: ["https://example.com/wireless-mouse.jpg"],
@@ -37,7 +37,7 @@ db.getCollection("products").insertMany([
   {
     title: "Fantasy Novel: Dragon’s Curse",
     description: "Epic fantasy book with dragons, magic, and mystery",
-    price: 12.99,
+    price: 499.00,
     category: "books",
     stock: 100,
     images: ["https://example.com/dragons-curse.jpg"],
@@ -45,7 +45,7 @@ db.getCollection("products").insertMany([
   {
     title: "Men’s Running Shoes",
     description: "Lightweight breathable running shoes",
-    price: 65.0,
+    price: 899.00,
     category: "clothing",
     stock: 25,
     images: ["https://example.com/running-shoes.jpg"],
@@ -53,7 +53,7 @@ db.getCollection("products").insertMany([
   {
     title: "Bluetooth Speaker",
     description: "Portable waterproof speaker with deep bass",
-    price: 35.99,
+    price: 1999.00,
     category: "electronics",
     stock: 60,
     images: ["https://example.com/bluetooth-speaker.jpg"],
@@ -61,7 +61,7 @@ db.getCollection("products").insertMany([
   {
     title: "Office Chair",
     description: "Ergonomic mesh chair with lumbar support",
-    price: 149.99,
+    price: 5500.00,
     category: "furniture",
     stock: 15,
     images: ["https://example.com/office-chair.jpg"],
@@ -69,7 +69,7 @@ db.getCollection("products").insertMany([
   {
     title: "Sketchbook Set",
     description: "A3-sized drawing pad with premium paper",
-    price: 18.75,
+    price: 350.00,
     category: "other",
     stock: 35,
     images: ["https://example.com/sketchbook.jpg"],
@@ -77,9 +77,17 @@ db.getCollection("products").insertMany([
   {
     title: "Cookbook: Quick Meals",
     description: "Over 100 easy and delicious recipes",
-    price: 22.49,
+    price: 799.00,
     category: "books",
     stock: 80,
     images: ["https://example.com/cookbook.jpg"],
+  },
+  {
+    title: "Yoga Mat",
+    description: "Non-slip eco-friendly yoga mat",
+    price: 899.00,
+    category: "other",
+    stock: 45,
+    images: ["https://example.com/yoga-mat.jpg"],
   },
 ]);
