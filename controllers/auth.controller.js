@@ -5,6 +5,7 @@ import { generateVerificationCode } from "../utils/verificationToken.js";
 import validator from "validator";
 import { validateUserRole } from "../validators/userRoleValidator.js";
 import { sendVerificationEmail } from "../nodemailer/verificationEmail.js";
+import logger from "../utils/logger.js";
 
 export const register = async (req, res) => {
   const { fullName, email, password, role } = req.body;
@@ -41,6 +42,8 @@ export const register = async (req, res) => {
     });
     // Send verification email
     await sendVerificationEmail(user.email, user.verificationCode);
+    
+    logger.info(`User registered: ${user.email} and his role is ${user.role}`);
 
     res.status(201).json({
       sucess: true,
@@ -51,7 +54,9 @@ export const register = async (req, res) => {
       },
       token: generateToken(user),
     });
+
   } catch (err) {
+    logger.error(` Error during register: ${err.message}`);
     res
       .status(500)
       .json({ message: "Internal Server Error", error: err.message });

@@ -14,6 +14,7 @@ import productRoutes from './routes/product.route.js'
 import cartRoutes from './routes/cart.routes.js'
 import orderRoutes from './routes/order.routes.js';
 import adminRoutes from './routes/admin.routes.js';
+import { errorHandler } from './middlewares/errorHandler.js';
 
 
 const Port = process.env.PORT;
@@ -34,6 +35,7 @@ app.use('/api/products', productRoutes);
 app.use('/api/cart', cartRoutes);
 app.use('/api/order', orderRoutes);
 app.use('/api/admin', adminRoutes);
+app.use(errorHandler);
 
 app.get('/', (req, res) => {
     res.send("API is running....");
