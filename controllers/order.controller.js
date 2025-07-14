@@ -62,14 +62,14 @@ export const downloadInvoice = async (req, res) => {
 
     if (!order) return res.status(404).json({ message: "Order not found" });
 
-    if (
-      order.user._id.toString() !== userId.toString() &&
-      req.user.role !== "admin"
-    ) {
-      return res
-        .status(403)
-        .json({ message: "Not authorized to download invoice" });
-    }
+    // if (
+    //   order.user._id.toString() !== userId.toString() &&
+    //   req.user.role !== "admin"
+    // ) {
+    //   return res
+    //     .status(403)
+    //     .json({ message: "Not authorized to download invoice" });
+    // }
 
     const invoicePath = path.join("invoices", `invoice_${order._id}.pdf`);
 
